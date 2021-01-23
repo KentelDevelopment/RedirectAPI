@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <center>
+        <h2>Language API (Click to start)</h2>
+
+
+        <p>Manually Select:</p>
+        <div class="manually" style="font-size:30px;">
+            <a href="/de">🇩🇪</a>
+            <a href="/en">🇬🇧</a>
+            <a href="/fr">🇫🇷</a>
+            <a href="/tr">🇹🇷</a>
+        </div><br>
+
+        <p>Or</p>
+        <button onclick="autoRedirect()">Auto Select</button>
+        <p>Detected Lang = <a id="ipapi"></a></p>
+    </center>
+
+
+    <script>
+         
+        /* Add "https://api.ipify.org?format=json" statement 
+           this will communicate with the ipify servers in 
+           order to retrieve the IP address $.getJSON will 
+           load JSON-encoded data from the server using a 
+           GET HTTP request */ 
+  
+           $.getJSON("http://ip-api.com/json", 
+                                          function(data) { 
+  
+            // Setting text of element P with id gfg 
+            $("#ipapi").html(data.countryCode); 
+            
+        }) 
+
+    
+    </script>
+    <script>
+        function autoRedirect(){
+            window.location.assign('/'+document.getElementById("ipapi").innerHTML.toLowerCase())
+        }
+    </script>
+    <style>
+        body{
+            font-family:sans-serif;
+        }
+    </style>
+</body>
+</html>
